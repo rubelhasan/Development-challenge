@@ -1,0 +1,23 @@
+{
+  "name": "statup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "serverless":"serverless --host 0.0.0.0 offline start",
+    "client": "http-server ../client"
+  },
+  "author": "Rubel Hasan",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.3.0",
+    "aws-sdk": "^2.41.0",
+    "chai": "^3.2.0",
+    "jsonwebtoken": "^7.3.0",
+    "lowdb": "^0.16.2",
+    "mocha": "^2.3.1",
+    "redis": "^2.7.1",
+    "superagent": "^3.5.2"
+  },
+  "devDependencies": {}
+}

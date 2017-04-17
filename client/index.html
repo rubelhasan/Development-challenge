@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="postMessages">
+<head>
+    <title>Messing app</title>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="/app/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="/style/style.css" />
+    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="container">
+      <div class="row">   
+          <div class="col-xs-12 col-sm-12" ng-controller="PostController as postObj">
+              <div class="form-signin">
+                  <form ng-submit="postObj.AddPost()">
+                      <div class="form-group">
+                        <label for="inputsm">Post message</label>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon3">{{postObj.user.name}}</span>
+                          <input type="text" class="form-control input-lg"  ng-model="postObj.msg" id="basic-url" aria-describedby="basic-addon3">
+                        </div>
+                    </div>
+               </form>
+<!--                   need to user directive
+ -->                    <ul id="postObj-list">
+                        <li ng-repeat="list in postObj.listConent | orderBy:'':true">
+                            <div ng-class="{notsave: list.status == true}" >
+                            <label class="user_name">
+                                <span>{{list.user_name}}</span>
+                            </label>
+                            <label class="msg" >
+                                 <span class="done-{{list.done}}">{{list.text}} </span>
+                            </label>
+                            <label class="action-content" ng-show="postObj.activeUser(list)">
+                                <a ng-href="#/edit/{{list.id}}">
+                                    <i class="icon-pencil">{{list.list_index}}</i>
+                                </a>
+                                |
+                                <a href="#" ng-click="postObj.DeletePost(list)">
+                                    <i class="icon-pencil">Delete</i>
+                                </a>
+                            </label>
+                            </div>
+                       </li>
+                  </ul>
+              </div>
+        </div>   
+      </div>
+    </div>
+</body>
+</html>
