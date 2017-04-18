@@ -51,7 +51,9 @@ exports.MatchkeyWithString=function (msg,postType,action_id,callback){
            callback(index);
           });
         }else{
-          Model.UpdateMsg(msg,action_id);
+          Model.UpdateMsg(msg,action_id,function(updatemsg){
+            callback(updatemsg);
+          });
         }
       }else{
         //Need to add into json error message
@@ -67,7 +69,9 @@ exports.MatchkeyWithString=function (msg,postType,action_id,callback){
         Model.AddSpecialKey();
       });
     }else{
-      Model.UpdateMsg(msg,action_id);
+      Model.UpdateMsg(msg,action_id,function(updatemsg){
+        callback(updatemsg);
+      });
    }
   }  
 }

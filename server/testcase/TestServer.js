@@ -202,8 +202,7 @@ describe('Posting messages (user 1)', function(){
 		  .set('Accept', 'application/json')
 		  .end(function(err, res){
 		   	// need to check some other issue
-		   	assert.equal(res.body.message, 'update', 'return delete text if remove the message');
-		   	assert.isNumber(res.body.message, 'Not geting message id');
+		   	assert.equal(res.body.message, 'update', 'message not update');
 		   	done();
 		  });  
 	  })
