@@ -8,10 +8,10 @@ exports.MessagePostCondition=function(msg,ParentCallback){
     function(callback) {
       //checking valid msg
       if(PostHelper.ValidObj(msg)){
-        callback();
+         callback();
       }else{
-        ParentCallback('validation issue')
-        return false
+         // validation issue 
+         ParentCallback('validation issue')
       };
     },function(callback) {
         ParentCallback()

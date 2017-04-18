@@ -10,13 +10,13 @@ exports.StoreDataIntoJson=function(data){
     .last()
     .write()
     .then(()=>{
-    	console.log('StoreDataIntoJson');
+    	//stored data into json
     })
 };
 exports.Init=function(){
   db.defaults({ message: [] })
   .write()
   .then(() => {
-    console.log('inti')
+    // init json object
   })
 };

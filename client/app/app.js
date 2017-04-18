@@ -11,7 +11,6 @@ app.service('AnonymousUser',function(config,$http){
         method: 'GET',
         url: config.apiUrl+'get-anonymous-user'
       }).then(function successCallback(response) {
-        console.log(response.data.message)
         callback(response.data.message)
       },function errorCallback(response) {
         alert('error')
@@ -25,7 +24,6 @@ app.service('Msg',function(config,$http){
       method: 'GET',
       url: config.apiUrl+'get-message'
     }).then(function successCallback(response) {
-        console.log(response.data.message)
         callback(response.data.message)
     },function errorCallback(response) {
         
@@ -80,9 +78,9 @@ app.service('CheckMsgstring',function(){
       callback()
     }else{
       if(msg.toLowerCase().indexOf(search_key[0])==-1){
-        console.log('archive all data')
+        // 'archive all data'
       }else{
-        console.log(msg,'need to send notification');
+        // 'need to send notification'
       }
     }
   };
@@ -118,7 +116,6 @@ app.controller('PostController', function(AnonymousUser,Msg,CheckMsgstring) {
       'token':Post.user.token,
     }
     Msg.DeleteMsg(DeleteObj,function(index){
-      console.log(index);
       Post.listConent.splice(index,1);
     })
   }

@@ -15,7 +15,6 @@ exports.GetUser=function(callback){
   		name:name,
   		token:token
   	})
-  console.log(token)  
 }
 exports.RemoveUser=function(){
   client.set('specialmatchkey', 'ok');

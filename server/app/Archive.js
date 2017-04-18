@@ -15,7 +15,6 @@ exports.DeleteAllOtherMsg=function(){
       message_content.forEach(function (item,index) {
         if(PostHelper.Matchkey(item,PostHelper.MsgKey())){
           ModelMessage.DeletMsg(index,function(){ });
-          //intentionally push here
           deleted_content.push(item);
         }
       })
@@ -30,7 +29,7 @@ exports.Update=function(obj,search_key){
   this.DeleteAllOtherMsg();
   if(!PostHelper.SpecialMatchKey(obj,search_key)){
     // For SNS notification
-    // this.Notification();
+    this.Notification();
   }
 };
 
@@ -41,7 +40,7 @@ exports.Notification=function(){
     secretAccessKey: 'secretAccessKey',
     region: 'us-west-1'
   });
-  console.log('sns Notification')
+  // sns notification object
   var sns = new AWS.SNS();
   var payload = {
     default: 'SNS Notification',
@@ -64,7 +63,6 @@ exports.Notification=function(){
         console.log("Error SNS while sending notification", err.stack);
       return;
     }
-      console.log('SNS sent');
-      console.log(data);
+    // SNS sent and need to DeleteAllOtherMsg other action
   });
 };

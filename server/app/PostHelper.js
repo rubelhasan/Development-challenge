@@ -8,10 +8,10 @@ exports.MsgKey=function(){
 
 exports.SpecialMatchKey=function(obj,search_key){
 	if(!this.wordInString(obj.text.toLowerCase(),search_key[0].toLowerCase())){
-    console.log('archive all data , add a post');
+    // archive all data and adding a post
     return true
   }else{
-    console.log('need to send notification, archive all data, add a post');
+    //need to send notification and archive all data and adding a post
     return false
   }
 }
@@ -31,7 +31,7 @@ exports.ValidObj=function(msg){
 	// need to remove json.parse 
   var obj=JSON.parse(msg);
   if(obj.text==''){
-    console.log('require valid msg');
+    // if the text is empty need to send message
     return false
   }else{
     return true;
@@ -54,7 +54,7 @@ exports.MatchkeyWithString=function (msg,postType,action_id,callback){
           Model.UpdateMsg(msg,action_id);
         }
       }else{
-        //Need to add into json
+        //Need to add into json error message
         callback('not save');
       }
     })
