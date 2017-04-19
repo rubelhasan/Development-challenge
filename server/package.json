@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "serverless":"serverless --host 0.0.0.0 offline start",
+    "serverless":"serverless --host 0.0.0.0 offline start ",
     "client": "http-server ../client"
   },
   "author": "Rubel Hasan",

@@ -29,7 +29,7 @@ exports.Update=function(obj,search_key){
   this.DeleteAllOtherMsg();
   if(!PostHelper.SpecialMatchKey(obj,search_key)){
     // For SNS notification
-    this.Notification();
+    //this.Notification();
   }
 };
 

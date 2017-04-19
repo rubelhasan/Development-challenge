@@ -11,6 +11,7 @@ app.service('AnonymousUser',function(config,$http){
         method: 'GET',
         url: config.apiUrl+'get-anonymous-user'
       }).then(function successCallback(response) {
+        $http.defaults.headers.common.Authorization = response.data.message.token;
         callback(response.data.message)
       },function errorCallback(response) {
         alert('error')
@@ -19,20 +20,22 @@ app.service('AnonymousUser',function(config,$http){
 });
 
 app.service('Msg',function(config,$http){
-  this.getMsglist=function(callback){
+  this.getMsglist=function(user,callback){
     $http({
       method: 'GET',
       url: config.apiUrl+'get-message'
     }).then(function successCallback(response) {
         callback(response.data.message)
     },function errorCallback(response) {
-        
+      console.log(response);      
     });
   }
+
   this.postMessages=function(Post,callback){
     var msgObject={'user_name':Post.user.name,'text':Post.msg,'token':Post.user.token}
     $http.post(config.apiUrl+'add-message?token='+Post.user.token, msgObject).then(function(response){
       if(Number.isInteger(response.data.message)){
+        console.log(response.data);
         Post.listConent.push({text:Post.msg, user_name:Post.user.name,list_index:response.data.message});
         Post.msg=''
       }else{
@@ -47,7 +50,7 @@ app.service('Msg',function(config,$http){
   this.DeleteMsg=function(ob,callback){
     $http({
       method: 'GET',
-      url: config.apiUrl+'delete-message/'+ob.list_index+'?token='+ob.token
+      url: config.apiUrl+'delete-message/'+ob.list_index
     }).then(function successCallback(response) {
         //callback(id);
     },function errorCallback(response) {
@@ -95,10 +98,12 @@ app.controller('PostController', function(AnonymousUser,Msg,CheckMsgstring) {
   var Post = this;
   AnonymousUser.getFullname(function(user){
     Post.user=user;
-  });
-  Msg.getMsglist(function(data){
+    Msg.getMsglist(user,function(data){
+      console.log(data);
     Post.listConent=data;
   }); 
+  });
+  
     
   Post.activeUser=function(list){
     if(list.user_name==Post.user.name){

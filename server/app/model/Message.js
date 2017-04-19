@@ -39,8 +39,8 @@ exports.GetMessage=function(callback){
 	},0);
   })
 };
-
 exports.UpdateMsg=function(msg,action_id,callback){
+  //before update trigger need to check post according to user valid token 
   client.lset('message',action_id,msg, function (err) {
     if(err) {
    	  throw err
